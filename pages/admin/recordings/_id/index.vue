@@ -1,6 +1,10 @@
 <template>
   <div class="flex justify-center">
-    <RecForm :recording="loadedPost" class="md:max-w-md lg:max-w-lg" />
+    <RecForm
+      :recording="loadedPost"
+      class="md:max-w-md lg:max-w-lg"
+      @submit="onSubmit"
+    />
   </div>
 </template>
 
@@ -16,10 +20,12 @@ export default {
       loadedPost: {},
     }
   },
-  onSubmit(postData) {
-    this.$store
-      .dispatch('editRecording', postData)
-      .then(() => this.$router.push('/admin'))
+  methods: {
+    onSubmit(postData) {
+      this.$store
+        .dispatch('editRecording', postData)
+        .then(() => this.$router.push('/admin'))
+    },
   },
   created() {
     this.loadedPost = this.$store.getters.getRecordings.find(

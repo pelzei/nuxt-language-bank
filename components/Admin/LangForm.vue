@@ -29,7 +29,10 @@
       <AppButton type="button" class="m-3" btn-style="cancel" @click="onCancel"
         >Cancel</AppButton
       >
-      <AppButton type="submit" class="m-3">Save</AppButton>
+      <AppButton type="submit" class="m-3" :disabled="true">Save</AppButton>
+    </div>
+    <div class="flex justify-center m-3 p-3 bg-yellow-300 rounded-md">
+      <p>Save button has been disabled, since this is only a demo version.</p>
     </div>
   </form>
 </template>

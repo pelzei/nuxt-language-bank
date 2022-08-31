@@ -36,9 +36,7 @@ const createStore = () => {
     actions: {
       nuxtServerInit(vuexContext, context) {
         return axios
-          .get(
-            'https://nuxt-language-bank-default-rtdb.europe-west1.firebasedatabase.app/languages.json'
-          )
+          .get(process.env.dataBase + 'languages.json')
           .then((res) => {
             const languagesArray = []
             for (const key in res.data) {
@@ -50,9 +48,7 @@ const createStore = () => {
       },
       fetchRecordings(context) {
         return axios
-          .get(
-            'https://nuxt-language-bank-default-rtdb.europe-west1.firebasedatabase.app/recordings.json'
-          )
+          .get(process.env.dataBase + 'recordings.json')
           .then((res) => {
             const recordingsArray = []
             for (const key in res.data) {
@@ -60,7 +56,7 @@ const createStore = () => {
             }
             context.commit('setRecordings', recordingsArray)
           })
-          .catch((e) => context.error(e))
+          .catch((e) => console.log(e))
       },
       setLanguages(context, posts) {
         context.commit('setLanguages', posts)
@@ -70,10 +66,7 @@ const createStore = () => {
       },
       addLanguage(vuexContext, post) {
         return axios
-          .post(
-            'https://nuxt-language-bank-default-rtdb.europe-west1.firebasedatabase.app/languages.json',
-            post
-          )
+          .post(process.env.DB + 'languages.json', post)
           .then((res) => {
             console.log(res.data)
             vuexContext.commit('addLanguage', { ...post, id: res.data.name })
@@ -83,22 +76,17 @@ const createStore = () => {
       editLanguage(vuexContext, postData) {
         console.log(postData.id)
         return axios
-          .put(
-            'https://nuxt-language-bank-default-rtdb.europe-west1.firebasedatabase.app/languages/' +
-              postData.id +
-              '.json',
-            {
-              article: postData.article,
-              langcode: postData.langcode,
-              langfamily: postData.langfamily,
-              langname: postData.langname,
-              langname_native: postData.langname_native,
-              mostspoken: postData.mostspoken,
-              nativespeakers: postData.nativespeakers,
-              nativespeakerssource: postData.nativespeakerssource,
-              official: postData.official,
-            }
-          )
+          .put(process.env.DB + 'languages/' + postData.id + '.json', {
+            article: postData.article,
+            langcode: postData.langcode,
+            langfamily: postData.langfamily,
+            langname: postData.langname,
+            langname_native: postData.langname_native,
+            mostspoken: postData.mostspoken,
+            nativespeakers: postData.nativespeakers,
+            nativespeakerssource: postData.nativespeakerssource,
+            official: postData.official,
+          })
           .then((res) => {
             vuexContext.commit('editLanguage', postData)
           })
@@ -106,10 +94,7 @@ const createStore = () => {
       },
       addRecording(vuexContext, post) {
         return axios
-          .post(
-            'https://nuxt-language-bank-default-rtdb.europe-west1.firebasedatabase.app/recordings.json',
-            post
-          )
+          .post(process.env.DB + 'recordings.json', post)
           .then((res) => {
             vuexContext.commit('addRecording', { ...post, id: res.data.name })
           })
@@ -118,25 +103,20 @@ const createStore = () => {
       editRecording(vuexContext, postData) {
         console.log(postData.id)
         return axios
-          .put(
-            'https://nuxt-language-bank-default-rtdb.europe-west1.firebasedatabase.app/recordings/' +
-              postData.id +
-              '.json',
-            {
-              age: postData.age,
-              direction: postData.direction,
-              geo_name: postData.geo_name,
-              geo_url: postData.geo_url,
-              langcode: postData.langcode,
-              name: postData.name,
-              recording: postData.recording,
-              speaker_name: postData.speaker_name,
-              text: postData.text,
-              transcription: postData.transcription,
-              transtext: postData.transtext,
-              year: postData.year,
-            }
-          )
+          .put(process.env.DB + 'recordings/' + postData.id + '.json', {
+            age: postData.age,
+            direction: postData.direction,
+            geo_name: postData.geo_name,
+            geo_url: postData.geo_url,
+            langcode: postData.langcode,
+            name: postData.name,
+            recording: postData.recording,
+            speaker_name: postData.speaker_name,
+            text: postData.text,
+            transcription: postData.transcription,
+            transtext: postData.transtext,
+            year: postData.year,
+          })
           .then((res) => {
             vuexContext.commit('editRecording', postData)
           })

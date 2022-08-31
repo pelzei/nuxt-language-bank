@@ -31,7 +31,6 @@ export default {
     this.loadedPost = this.$store.getters.getLanguages.find(
       (language) => language.id === this.$route.params.id
     )
-    console.log(this.loadedPost)
   },
 }
 </script>

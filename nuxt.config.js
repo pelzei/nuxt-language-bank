@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -14,15 +16,21 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-          { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700;900&family=Noto+Sans+Armenian:wght@400;500;700;900&family=Noto+Sans+Bengali:wght@400;500;700;900&family=Noto+Sans+Hebrew:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Myanmar:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+Tamil:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" }
-          ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700;900&family=Noto+Sans+Armenian:wght@400;500;700;900&family=Noto+Sans+Bengali:wght@400;500;700;900&family=Noto+Sans+Hebrew:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Myanmar:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+Tamil:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap',
+      },
+    ],
+  },
+
+  env: {
+    dataBase: process.env.DB,
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    "@/assets/css/main.css"
-  ],
+  css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -34,7 +42,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    "@nuxt/postcss8"
+    '@nuxt/postcss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -54,8 +62,8 @@ export default {
     postcss: {
       plugins: {
         tailwindcss: {},
-        autoprefixer: {}
-      }
-    }
+        autoprefixer: {},
+      },
+    },
   },
 }
