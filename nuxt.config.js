@@ -1,4 +1,5 @@
 require('dotenv').config()
+const axios = require('axios')
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -64,6 +65,20 @@ export default {
         tailwindcss: {},
         autoprefixer: {},
       },
+    },
+  },
+  generate: {
+    routes: function () {
+      return axios.get(process.env.DB + 'languages.json').then((res) => {
+        const routes = []
+        for (const key in res.data) {
+          routes.push({
+            route: '/languages/' + res.data.langcode,
+            payload: { postData: res.data[key] },
+          })
+        }
+        return routes
+      })
     },
   },
 }

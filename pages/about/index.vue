@@ -1,9 +1,7 @@
 <template>
   <div class="w-full min-h-screen">
-    <div class="flex justify-center">
-      <div
-        class="lg:w-1/2 md:w-2/3 sm:w-3/4 text-white lg:mt-12 md:mt-8 sm:mt-4"
-      >
+    <div class="flex flwex-row justify-center">
+      <div class="w-3/4 md:w-2/3 lg:w-1/2 text-white mt-4 md:mt-8 lg:mt-12">
         <h1 class="text-xl font-black">What is the Aesop Language Bank?</h1>
         <p class="mt-6">
           The Aesop Language Bank is a collection of samples of languages and

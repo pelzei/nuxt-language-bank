@@ -1,7 +1,7 @@
 <template>
   <div class="w-full min-h-screen">
     <div class="flex justify-center">
-      <div class="w-1/3 bg-yellow-300 my-4 p-4 rounded-md">
+      <div class="w-5/6 md:w-1/2 w-1/3 bg-yellow-300 my-4 p-4 rounded-md">
         <h1>
           This is a demo version and only shows the admin area openly to
           demonstrate it. Any functions to manipulate the database have been
@@ -9,8 +9,8 @@
         </h1>
       </div>
     </div>
-    <div class="flex justify-around">
-      <div class="w-1/3">
+    <div class="flex flex-col md:flex-row justify-around">
+      <div class="w-5/6 md:w-1/2 lg:w-2/5">
         <nuxt-link to="/admin/languages/new">
           <AppButton class="font-bold p-2 m-4 bg-yellow-300 border-yellow-300"
             >Add a new language</AppButton
@@ -20,7 +20,7 @@
           <AdminLanguageList :allLanguages="allLanguages" />
         </AppCard>
       </div>
-      <div class="w-1/3">
+      <div class="w-5/6 md:w-1/2 lg:w-2/5">
         <nuxt-link to="/admin/recordings/new">
           <AppButton class="font-bold p-2 m-4 bg-yellow-300 border-yellow-300"
             >Add a new recording</AppButton
